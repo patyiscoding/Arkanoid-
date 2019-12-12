@@ -29,9 +29,10 @@ let bottomY; // next block bottom verge Y
 let leftX; // block left verge X
 let rightX; // next block right verge X
 let score = 0;
-let speed = 5 + 1.2 * (level - 1);
+let speed = 5 + 0.8 * (level - 1);
 let spaces = 3; //spaces between blocks
 let play;
+let interval;
 let ballX, ballY;
 let stepX, stepY;
 let posX, posY;
@@ -112,7 +113,7 @@ function draw() {
                 if (ballY <= bottomY && ballY > topY + 5 && ballX < rightX && ballX > leftX || ballY >= topY && ballY < bottomY - 5 && ballX < rightX && ballX > leftX) {
                     if (tab[y][x] != 0) {
                         stepY = -stepY;
-                        if (audioBool == true) blockCollision.play();
+                        // if (audioBool == true) blockCollision.play();
                         if (tab[y][x] != -1) {
                             tab[y][x] = tab[y][x] - 1;
                             score += (10 * bonus);
@@ -129,7 +130,7 @@ function draw() {
                 if (ballY < bottomY && ballY > topY && (ballX >= leftX && ballX < leftX + 5 || ballX > rightX - 5 && ballX <= rightX)) {
                     if (tab[y][x] != 0) {
                         stepX = -stepX;
-                        if (audioBool == true) blockCollision.play();
+                        // if (audioBool == true) blockCollision.play();
                         if (tab[y][x] != -1) {
                             tab[y][x] = tab[y][x] - 1;
                             score += (10 * bonus);
@@ -214,7 +215,7 @@ function playGame() {
     ballY = window.innerHeight - 30;
     stepY = -speed;
     stepX = speed;
-    play = setInterval(setRandom, 10000);
+    interval = setInterval(setRandom, 5000);
     play = setInterval('draw()', 10);
 }
 
@@ -328,7 +329,7 @@ function play2() {
     stepY = -speed;
     stepX = speed;
     newArray();
-    play = setInterval(setRandom, 10000);
+    interval = setInterval(setRandom, 5000);
 }
 
 function hideLevels() {
@@ -492,7 +493,8 @@ $(function serverFunctions() {
     $('.on').click(async function () {
         $('.on').hide(0);
         $('.off').show(0);
-        clearInterval(play);
+        clearInterval(interval);
+        clearInterval(play)
         loopRandom = false;
         $('.shade').show(200);
         if (wonOrLostBoolean == true) {
