@@ -3,7 +3,7 @@ const superagent = require("superagent");
 module.exports = async (req, res) => {
     try {
         console.log('j')
-        const scores = await updateScores();
+        const scores = await updateScores(req.query);
         res.json({
             scores: JSON.parse(scores)
         });
@@ -13,7 +13,7 @@ module.exports = async (req, res) => {
     }
 };
 
-async function updateScores() {
+async function updateScores(query) {
     console.log("in");
     const result = await superagent
         .put(
@@ -27,7 +27,7 @@ async function updateScores() {
                 name: "lauvrenn",
                 email: "lauvrenn@gmail.com"
             },
-            "content":
+            content: query
         })
         // .then(res => {
         //     console.log("response from github ", res.body.content);

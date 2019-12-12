@@ -46,7 +46,6 @@ function newArray() {
         tab[i] = new Array(col);
         for (let k = 0; k < col; k++) {
             tab[i][k] = randProbability();
-            //            tab[i][k] = 0;
         }
     }
 }
@@ -231,7 +230,6 @@ function mousePos(event) {
         posY = e.clientY + document.body.scrollTop;
     }
 
-    //    document.getElementById("text2").innerHTML = posY;
     return {
         posX,
         posY
@@ -390,11 +388,20 @@ async function getData() {
 async function updateData() {
     if (!data) await getData()
     let objIndex = data.scores.findIndex((obj) => obj.username == username)
-    if (score > data.scores[objIndex].score) {
-        data.scores[objIndex].score = score
-    }
-    if (level > data.scores[objIndex].level) {
-        data.scores[objIndex].level = level
+    if (objIndex === -1) {
+        const newUser = {
+            username: username,
+            score: score,
+            level: level
+        }
+        data.scores.push(newUser)
+    } else {
+        if (score > data.scores[objIndex].score) {
+            data.scores[objIndex].score = score
+        }
+        if (level > data.scores[objIndex].level) {
+            data.scores[objIndex].level = level
+        }
     }
 
     const res = await $.ajax({
