@@ -1,0 +1,67 @@
+<html>
+
+<head>
+    <link rel="stylesheet" href="style/css/style.css" type="text/css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.js"></script>
+    <script>
+        async function serverFunctions() {
+            const sortJSON = (data) => data.sort((a, b) => ((a.score > b.score) ? -1 : ((a.score < b
+                    .score) ?
+                1 : 0)));
+
+            await $.ajax({
+                url: "https://arkanoid.lauvrenn.now.sh/api/scores",
+                type: "get"
+            }).done(function (res, textStatus, jqXHR) {
+                $.ajaxSetup({
+                    cache: false
+                });
+
+                const sorted = sortJSON(res.scores);
+                $("#temp").hide()
+                sorted.forEach(userData => {
+                    console.log('u', userData)
+                    let row = $('<tr></tr>');
+                    $('<td></td>').addClass('score-row').text(userData.username).appendTo(row);
+                    $('<td></td>').addClass('score-row').text(userData.score).appendTo(row);
+                    $('<td></td>').addClass('score-row').text(userData.level).appendTo(row);
+                    $(".scorestable tbody").append(row)
+                });
+            }).fail(function (response) {
+                console.log(response);
+            });
+        }
+    </script>
+</head>
+
+<body onload="serverFunctions()">
+
+    <div class="scores-main">
+        <div class="scores-div" id="scores-div">
+            <p>Leaderboard</p>
+            <table class="scorestable">
+                <thead>
+                    <tr>
+                        <th>USERNAME</th>
+                        <th>SCORE</th>
+                        <th>LEVEL</th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+            <p id="temp">Loading...</p>
+        </div>
+
+    </div>
+    <div class="scores-footer">
+        <div class="centerFooter">
+            <a href="index.html">
+                <button class="back">Back</button>
+            </a>
+        </div>
+    </div>
+
+</body>
+
+</html>

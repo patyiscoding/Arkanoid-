@@ -1,0 +1,69 @@
+<html>
+
+<head>
+    <link href="style/css/style.css" type="text/css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.js"></script>
+    <script
+        src="https://polyfill.io/v3/polyfill.min.js?features=Array.from,Promise,Symbol,Object.setPrototypeOf,Object.getOwnPropertySymbols">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/superagent"></script>
+    <script src="main.js"></script>
+
+</head>
+
+<body id="levels" onload="hideLevels()">
+    <div class="container">
+        <div class="centerBox">
+            <div class="centerBox-header">
+                <h1 id="levels-h1">LEVELS</h1>
+            </div>
+            <div class="centerBox-content">
+                <a href="main.html" id="a-1" class="a-levels">
+                    <div class="level">
+                        <p id="1" class="level-p">1</p>
+                    </div>
+                </a>
+                <a id="a-2" class="a-levels">
+                    <div class="level">
+                        <p id="2" class="level-p">2</p>
+                        <img src="style/images/lock.png" id="lock2">
+                    </div>
+                </a>
+                <a id="a-3" class="a-levels">
+                    <div class="level">
+                        <p id="3" class="level-p">3</p>
+                        <img src="style/images/lock.png" id="lock3">
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="container-username">
+        <div class="container-user-in">
+            <div class="centerUser">
+                <p>Input your username</p>
+                <input type="text" id="username" name="username" value="">
+                <div class="flex">
+                    <!--
+                    <button class="levels-cancel">Cancel</button>
+                    <a href="main.html" class="levels-a">
+-->
+                    <button class="levels-play">Play</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container2">
+        <div class="centerFooter">
+            <a href="index.html">
+                <button class="back">Back</button>
+            </a>
+        </div>
+    </div>
+
+</body>
+
+
+</html>

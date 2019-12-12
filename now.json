@@ -1,0 +1,5 @@
+{
+    "env": {
+        "git_token": "@git_token"
+    }
+}

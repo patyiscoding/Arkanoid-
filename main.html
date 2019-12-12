@@ -1,0 +1,89 @@
+<html>
+
+<head>
+    <link href="style/css/style.css" type="text/css" rel="stylesheet">
+    <link rel='stylesheet prefetch' href='http://fonts.googleapis.com/css?family=Open+Sans:600'>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.js"></script>
+    <script src="http://use.edgefonts.net/source-sans-pro:n2:default.js"></script>
+    <script src="main.js"></script>
+
+    <!-- // "build": "rollup -c",
+    // "autobuild": "rollup -c -w",
+    // "dev": "run-p start:dev autobuild", -->
+
+</head>
+
+<body onload="playGame()" id="main">
+    <div class="main">
+        <div class="on" id="on">
+            <svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 159.89 160.28">
+                <defs>
+                    <style>
+                        .cls-1 {
+                            fill: #555;
+                        }
+
+                        .cls-2 {
+                            fill: #fff;
+                        }
+                    </style>
+                </defs>
+                <title>pause</title>
+                <circle class="cls-1" cx="79.33" cy="85.35" r="65.03" />
+                <rect class="cls-2" x="51.72" y="58.85" width="17.56" height="53" />
+                <rect class="cls-2" x="87" y="58.94" width="17.56" height="53" />
+            </svg>
+        </div>
+        <div class="off">
+            <svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 159.89 160.28">
+                <defs>
+                    <style>
+                        .cls-1 {
+                            fill: #555;
+                        }
+
+                        .cls-2 {
+                            fill: #fff;
+                        }
+                    </style>
+                </defs>
+                <title>Play</title>
+                <circle class="cls-1" cx="79.33" cy="85.64" r="65.03" />
+                <polygon class="cls-2" points="116.62 85.64 61.96 117.2 61.96 54.08 116.62 85.64" />
+            </svg>
+        </div>
+        <div class="score">
+            <p id="highscore-p"></p>
+            <p id="level-p"></p>
+            <p id="score-p">0</p>
+        </div>
+        <div id="stripe"></div>
+        <canvas id="canvas"></canvas>
+    </div>
+    <div class="shade">
+        <div class="in">
+            <div class="pop-up">
+                <h1 id="pu-score-h1"></h1>
+                <p id="pu-score-p"></p>
+                <button class="restart1">Restart</button>
+                <button class="nextLevel">Next Level</button>
+                <a href="scorestable.html">
+                    <button>Best Scores</button>
+                </a>
+                <a href="index.html" class="a-type">
+                    <button class="exit">Exit</button>
+                </a>
+            </div>
+            <div class="center-in">
+                <button class="restart">Restart</button>
+                <button class="soundOn dark not">Sound on</button>
+                <button class="soundOff not">Sound off</button>
+                <a href="index.html" class="a-type">
+                    <button class="exit">Exit</button>
+                </a>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
