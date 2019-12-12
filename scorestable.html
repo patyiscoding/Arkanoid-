@@ -17,7 +17,7 @@
                     cache: false
                 });
 
-                const sorted = sortJSON(res.scores);
+                const sorted = sortJSON(res);
                 $("#temp").hide()
                 sorted.forEach(userData => {
                     console.log('u', userData)

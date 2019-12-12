@@ -388,20 +388,20 @@ async function getData() {
 
 async function updateData() {
     if (!data) await getData()
-    let objIndex = data.scores.findIndex((obj) => obj.username == username)
+    let objIndex = data.findIndex((obj) => obj.username == username)
     if (objIndex === -1) {
         const newUser = {
             username: username,
             score: score,
             level: level
         }
-        data.scores.push(newUser)
+        data.push(newUser)
     } else {
-        if (score > data.scores[objIndex].score) {
-            data.scores[objIndex].score = score
+        if (score > data[objIndex].score) {
+            data[objIndex].score = score
         }
-        if (level > data.scores[objIndex].level) {
-            data.scores[objIndex].level = level
+        if (level > data[objIndex].level) {
+            data[objIndex].level = level
         }
     }
 
@@ -423,7 +423,7 @@ async function updateData() {
 async function findUser(username) {
     data = await getData();
     let results;
-    results = $.map(data.scores, function (entry) {
+    results = $.map(data, function (entry) {
         let match = username ? entry.username.indexOf(username) !== -1 : false;
         return match ? entry : null;
     });

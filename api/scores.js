@@ -4,9 +4,7 @@ module.exports = async (req, res) => {
     try {
         console.log('j')
         const scores = await getScores();
-        res.json({
-            scores: JSON.parse(scores)
-        });
+        res.json(JSON.parse(scores));
     } catch (e) {
         console.error(e);
         res.status(500).send("An error occurred");
