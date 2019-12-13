@@ -1,6 +1,6 @@
 # Arkanoid
 
-A small online platform game with multiple levels and random obstacles
+My old, small online platform game with multiple levels and random obstacles
 
 ![](preview.gif)
 
