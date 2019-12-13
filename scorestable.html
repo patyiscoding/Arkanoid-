@@ -17,10 +17,14 @@
                     cache: false
                 });
 
-                const sorted = sortJSON(res);
+                ({
+                    scores,
+                    sha
+                } = res);
+
+                const sorted = sortJSON(scores);
                 $("#temp").hide()
                 sorted.forEach(userData => {
-                    console.log('u', userData)
                     let row = $('<tr></tr>');
                     $('<td></td>').addClass('score-row').text(userData.username).appendTo(row);
                     $('<td></td>').addClass('score-row').text(userData.score).appendTo(row);

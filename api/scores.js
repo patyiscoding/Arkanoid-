@@ -2,13 +2,11 @@ const superagent = require("superagent");
 
 module.exports = async (req, res) => {
     try {
-        console.log("j");
         const {
             scores,
             sha
         } = await getScores();
         console.log("scores server ", scores);
-        console.log("sha server ", sha);
         res.json({
             scores: JSON.parse(scores),
             sha: sha
@@ -20,7 +18,6 @@ module.exports = async (req, res) => {
 };
 
 async function getScores() {
-    console.log("in");
     const result = await superagent
         .get("https://api.github.com/repos/lauvrenn/scores/contents/scores.json")
         .set("Authorization", `token ${process.env.git_token}`)

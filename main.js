@@ -390,8 +390,6 @@ async function getData() {
     localStorage.setItem("sha", sha);
 
     console.log('response from /api/scores ', res)
-    console.log('data from /api/scores ', data)
-    console.log('response /api/scores sha ', sha)
     return data
 }
 
@@ -415,13 +413,8 @@ async function updateData() {
         }
     }
 
-    console.log('data here ', data)
-    console.log('newdata here ', newData)
-    console.log('compare ', JSON.stringify(data) !== JSON.stringify(newData))
-
     if (JSON.stringify(data) !== JSON.stringify(newData)) {
         const stringifiedData = JSON.stringify(newData)
-        console.log('string ', stringifiedData)
         const res = await $.ajax({
             url: "https://arkanoid.lauvrenn.now.sh/api/updatescores",
             type: "post",
@@ -477,7 +470,6 @@ $(function serverFunctions() {
         const userData = await findUser(username);
 
         if (userData) {
-            console.log('u', userData)
             switch (userData.level) {
                 case 1:
                     document.getElementById('a-2').removeAttribute("href");
@@ -502,7 +494,6 @@ $(function serverFunctions() {
                     break;
             }
         } else {
-            console.log('s')
             document.getElementById('a-2').removeAttribute("href");
             document.getElementById('a-3').removeAttribute("href");
             document.getElementById('lock2').style.display = 'block';

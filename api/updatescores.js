@@ -2,12 +2,7 @@ const superagent = require("superagent");
 
 module.exports = async (req, res) => {
     try {
-        console.log('cookies ', req.cookies)
-        console.log('query ', req.query)
-        console.log('body ', req.body)
         console.log('body ', req.body.stringifiedData)
-        console.log('converted ', JSON.parse(JSON.stringify(req.body)))
-        console.log('converted ', JSON.parse(JSON.stringify(req.body)).stringifiedData)
 
         const content = req.body.stringifiedData
         const sha = req.body.sha
@@ -58,7 +53,6 @@ async function updateScores(content, sha) {
         .catch(er => console.log("e", er));
 
     console.log('received from github ', result.body)
-    console.log('received from github result ', result)
 
     return result
 }
