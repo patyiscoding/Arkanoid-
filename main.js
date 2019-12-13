@@ -12,6 +12,7 @@ let row = 5 * (level || 1);
 let col = 4 * (level || 1);
 let closeBottom = false;
 let data;
+let sha;
 let num;
 let tab = new Array(col);
 let movingBlockHeight = 20;
@@ -380,44 +381,67 @@ async function getData() {
         console.log(response);
     });
 
-    data = res;
+    ({
+        scores,
+        sha
+    } = res);
+
+    data = scores
+    localStorage.setItem("sha", sha);
 
     console.log('response from /api/scores ', res)
-    return res
+    console.log('data from /api/scores ', data)
+    console.log('response /api/scores sha ', sha)
+    return data
 }
 
 async function updateData() {
-    if (!data) await getData()
+    if (!(data || sha)) await getData()
     let objIndex = data.findIndex((obj) => obj.username == username)
+    let newData = data.slice()
     if (objIndex === -1) {
         const newUser = {
             username: username,
             score: score,
             level: level
         }
-        data.push(newUser)
+        newData.push(newUser)
     } else {
-        if (score > data[objIndex].score) {
-            data[objIndex].score = score
+        if (score > newData[objIndex].score) {
+            newData[objIndex].score = score
         }
-        if (level > data[objIndex].level) {
-            data[objIndex].level = level
+        if (level > newData[objIndex].level) {
+            newData[objIndex].level = level
         }
     }
 
-    const res = await $.ajax({
-        url: "https://arkanoid.lauvrenn.now.sh/api/scores",
-        type: "post",
-        data: data
-    }).done(function (response, textStatus, jqXHR) {
-        $.ajaxSetup({
-            cache: false
-        });
-    }).fail(function (response) {
-        console.log(response);
-    });
+    console.log('data here ', data)
+    console.log('newdata here ', newData)
+    console.log('compare ', JSON.stringify(data) !== JSON.stringify(newData))
 
-    console.log('update ok? ', res)
+    if (JSON.stringify(data) !== JSON.stringify(newData)) {
+        const stringifiedData = JSON.stringify(newData)
+        console.log('string ', stringifiedData)
+        const res = await $.ajax({
+            url: "https://arkanoid.lauvrenn.now.sh/api/updatescores",
+            type: "post",
+            data: {
+                stringifiedData,
+                sha: sha
+            }
+        }).done(function (response, textStatus, jqXHR) {
+            $.ajaxSetup({
+                cache: false
+            });
+        }).fail(function (response) {
+            console.log(response);
+        });
+        console.log('update ok? ', res)
+    } else {
+        console.log('Scores are lower, didn\'t update')
+    }
+
+    data = newData
 }
 
 async function findUser(username) {
