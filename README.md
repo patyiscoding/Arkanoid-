@@ -1,6 +1,6 @@
 # Arkanoid
 
-My old, small platform game with multiple levels and random obstacles. Now, playable online at https://arkanoid.lauvrenn.now.sh/
+My old, small platform game with multiple levels and random obstacles. Now, playable online at https://arkanoid.vercel.app/
 
 ![](preview.gif)
 
